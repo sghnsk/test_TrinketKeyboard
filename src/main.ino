@@ -1,10 +1,10 @@
 /*
-TrinketKeyboard example
+TrinketHidCombo example
 For Trinket by Adafruit Industries
 */
 #include <Arduino.h>
 
-#include <TrinketKeyboard.h>
+#include <TrinketHidCombo.h>
 
 #define LED_PIN 1
 #define KEY_CAPS_LOCK 0x39
@@ -12,11 +12,11 @@ For Trinket by Adafruit Industries
 void setup() {
   pinMode(LED_PIN, OUTPUT);
   // start USB stuff
-  TrinketKeyboard.begin();
+  TrinketHidCombo.begin();
 }
 
 void loop() {
-  TrinketKeyboard.poll();
+  TrinketHidCombo.poll();
   // the poll function must be called at least once every 10 ms
   // or cause a keystroke
   // if it is not, then the computer may think that the device
@@ -24,16 +24,16 @@ void loop() {
 
   TrinketHidCompatibleDelay(1000);
 
-  uint8_t led_state = TrinketKeyboard.getLEDstate();
+  uint8_t led_state = TrinketHidCombo.getLEDstate();
 
   //test prints
-  uint8_t buttonLEDstate = TrinketKeyboard.getLEDstate();
-  TrinketKeyboard.print(buttonLEDstate,BIN); TrinketKeyboard.print(", "); TrinketKeyboard.println(buttonLEDstate);
-  TrinketKeyboard.print("test"); TrinketKeyboard.print(", "); TrinketKeyboard.println(buttonLEDstate);
-  TrinketKeyboard.println();
+  uint8_t buttonLEDstate = TrinketHidCombo.getLEDstate();
+  TrinketHidCombo.print(buttonLEDstate,BIN); TrinketHidCombo.print(", "); TrinketHidCombo.println(buttonLEDstate);
+  TrinketHidCombo.print("test"); TrinketHidCombo.print(", "); TrinketHidCombo.println(buttonLEDstate);
+  TrinketHidCombo.println();
 
   //light up onboard LED when Caps Lock is on
-  digitalWrite(LED_PIN, (TrinketKeyboard.getLEDstate()&KB_LED_CAPS)?HIGH:LOW);  
+  digitalWrite(LED_PIN, (TrinketHidCombo.getLEDstate()&KB_LED_CAPS)?HIGH:LOW);  
 
 
 }
@@ -42,6 +42,6 @@ void loop() {
 void TrinketHidCompatibleDelay(unsigned int desiredDelay) {
   unsigned long t_start = millis(); //ms
   while (millis()-t_start<desiredDelay) {
-    TrinketKeyboard.poll();
+    TrinketHidCombo.poll();
   }
 }
