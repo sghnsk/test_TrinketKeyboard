@@ -3,9 +3,9 @@
 
 #define LED_PIN 1
 #define LED_PIN_DELAY 200
-#define KB_LED_STATE_MASK KB_LED_SCROLL
-#define KB_LED_STATE_WAIT 900
-#define KB_LED_STATE_NUM 2
+#define KB_LED_STATE_MASK KB_LED_NUM
+#define KB_LED_STATE_WAIT 1500
+#define KB_LED_STATE_NUM 4
 
 unsigned long previousMillis = 0;
 uint8_t lastKbLedState = 0;
